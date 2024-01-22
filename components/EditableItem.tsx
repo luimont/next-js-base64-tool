@@ -11,13 +11,15 @@ type SecretObject = {
   [key: string]: Secret;
 };
 
-type EditableItemProps = {
-  secretInput: SecretObject[keyof SecretObject]; // Utilizamos keyof para extraer el tipo del valor de la propiedad
-  setSecrets: React.Dispatch<React.SetStateAction<SecretObject>>;
-};
+// En EditableItem.tsx
+interface EditableItemProps {
+  secretInput: SecretObject;
+  setSecrets: React.Dispatch<React.SetStateAction<SecretObject[]>>
+  // ...
+}
 
 
-export const EditableItem = ({...props}, secretInput:SecretObject) => {
+export const EditableItem = (secretInput:EditableItemProps) => {
   //console.log(`input-> ${JSON.stringify(secretInput)}`)
   //console.log(`object-> ${JSON.stringify(Object.values(secretInput)[0])}`)
   //console.log(`values: ${Object.values(secretInput)[0]}`)
