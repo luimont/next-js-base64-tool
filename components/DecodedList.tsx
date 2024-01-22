@@ -1,16 +1,16 @@
-import { secret_decoded } from '@/mocks/secrets'
+//import { secret_decoded } from '@/mocks/secrets'
 import React, { useState } from 'react'
 
 const secrets_list_current = String.raw`
-  secret_m8={name=\\"m8\\", value={ \\"secret\\": \\"uyiyu/ZkVoP3pHKjZhaSOF9QUk9EIn0=\\" }, description=\\"Secrets for M8 Database\\"}, 
-  secret_piwebapi={name= \\"piwebapi\\", value={ \\"secret\\": \\"eyJQSV9VUXSc+eEZwQyJ9\\" }, description=\\"Secrets for PiWebApi Lambda\\"}, 
-  secret_m10={name=\\"m10\\", value={ \\"secret\\": \\"eyJ1cFwcm9kIiwgInBhc3N3b3JkIjogImjencyZXkwEwX1BST0QifQ==\\" }, description=\\"Secrets for M10 Database\\"},
+  secret_s8={name=\\"s8\\", value={ \\"secret\\": \\"uyiyu/ZkVoP3pHKjZhaSOF9QUk9EIn0=\\" }, description=\\"Secrets for s8 Database\\"}, 
+  secret_myapi={name= \\"myapi\\", value={ \\"secret\\": \\"eyJQSV9VUXSc+eEZwQyJ9\\" }, description=\\"Secrets for myApi \\"}, 
+  secret_s10={name=\\"s10\\", value={ \\"secret\\": \\"eyJ1cFwcm9kIiwgInBhc3N3b3JkIjogImjencyZXkwEwX1BST0QifQ==\\" }, description=\\"Secrets for s10 Database\\"},
 `
 
 const secrets_list_jsonform = String.raw`
-{"secret_m8":{"name":\\"m8\\", "value":{ \\"secret\\": \\"uyiyu/ZkVoP3pHKjZhaSOF9QUk9EIn0=\\" }, "description":\\"Secrets for M8 Database\\"}}, 
-{"secret_piwebapi":{"name": \\"piwebapi\\", "value":{ \\"secret\\": \\"eyJQSV9VUXSc+eEZwQyJ9\\" }, "description":\\"Secrets for PiWebApi Lambda\\"}}, 
-{"secret_m10":{"name":\\"m10\\", "value":{ \\"secret\\": \\"eyJ1cFwcm9kIiwgInBhc3N3b3JkIjogImjencyZXkwEwX1BST0QifQ==\\" }, "description":\\"Secrets for M10 Database\\"}}
+{"secret_s8":{"name":\\"s8\\", "value":{ \\"secret\\": \\"uyiyu/ZkVoP3pHKjZhaSOF9QUk9EIn0=\\" }, "description":\\"Secrets for s8 Database\\"}}, 
+{"secret_myapi":{"name": \\"myapi\\", "value":{ \\"secret\\": \\"eyJQSV9VUXSc+eEZwQyJ9\\" }, "description":\\"Secrets for myApi \\"}}, 
+{"secret_s10":{"name":\\"s10\\", "value":{ \\"secret\\": \\"eyJ1cFwcm9kIiwgInBhc3N3b3JkIjogImjencyZXkwEwX1BST0QifQ==\\" }, "description":\\"Secrets for s10 Database\\"}}
 `
 
 type SecretObject = {
@@ -95,32 +95,28 @@ export const DecodedList = () => {
 
   const examp: SecretObject[] = [
     {
-      secret_m8: {
-        name: 'm8',
+      secret_s8: {
+        name: 's8',
         value: { secret: 'tes456df456sdf456456te'},
-        description: 'Secrets for M8 Database'
+        description: 'Secrets for s8 Database'
       }
     },
     {
-      secret_piwebapi: {
-        name: 'piwebapi',
+      secret_myapi: {
+        name: 'myapi',
         value: { secret: 'tet546s456df456sdfe456'},
-        description: 'Secrets for PiWebApi Lambda'
+        description: 'Secrets for myApi'
       }
     },
     {
-      secret_m10: {
-        name: 'm10',
+      secret_s10: {
+        name: 's10',
         value: { secret: 'd645f645sdf456s645df'},
-        description: 'Secrets for M10 Database'
+        description: 'Secrets for s10 Database'
       }
     }
   ]
 
-  /* const example = {[{"secret_m8":{"name":"m8", "value":{ "secret": "uyiyu/ZkVoP3pHKjZhaSOF9QUk9EIn0=" }, "description":"Secrets for M8 Database"}}, 
-    {"secret_piwebapi":{"name": "piwebapi", "value":{ "secret": "eyJQSV9VUXSc+eEZwQyJ9" }, "description":"Secrets for PiWebApi Lambda"}}, 
-    {"secret_m10":{"name":"m10", "value":{ "secret": "eyJ1cFwcm9kIiwgInBhc3N3b3JkIjogImjencyZXkwEwX1BST0QifQ==" }, "description":"Secrets for M10 Database"}},
-    ]} */
 
   // Iterar sobre las propiedades del objeto
   //for (const key in secretsObject) {
