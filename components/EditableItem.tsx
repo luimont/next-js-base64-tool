@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FunctionComponentFactory, useState } from 'react'
 
 // Definir el tipo para un objeto de secretos
 type Secret = {
@@ -11,8 +11,13 @@ type SecretObject = {
   [key: string]: Secret;
 };
 
+type EditableItemProps = {
+  secretInput: SecretObject[keyof SecretObject]; // Utilizamos keyof para extraer el tipo del valor de la propiedad
+  setSecrets: React.Dispatch<React.SetStateAction<SecretObject>>;
+};
 
-export const EditableItem = (secretInput:SecretObject) => {
+
+export const EditableItem = ({...props}, secretInput:SecretObject) => {
   //console.log(`input-> ${JSON.stringify(secretInput)}`)
   //console.log(`object-> ${JSON.stringify(Object.values(secretInput)[0])}`)
   //console.log(`values: ${Object.values(secretInput)[0]}`)
