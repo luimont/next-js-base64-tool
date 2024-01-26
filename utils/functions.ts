@@ -1,3 +1,4 @@
+
 export const encodeBase64 = (text:string) => {
   const encodedText = btoa(text);
   return encodedText
@@ -70,8 +71,8 @@ export const fixFormatJsonform = (rawString: string) => {
 
   // Agregar llaves alrededor de la cadena para formar un objeto JSON
   //const jsonObjectString = `[${doubleBar}]`;
-  const jsonObjectString = doubleBar
-  console.log('6s)' +jsonObjectString)
+  const jsonObjectString = JSON.parse(`[${doubleBar}]`)
+  //console.log('6s)' +jsonObjectString)
 
   return jsonObjectString;
 };

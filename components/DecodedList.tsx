@@ -2,6 +2,7 @@
 
 import { decodeBase64, encodeBase64, fixFormatJsonform } from '@/utils/functions'
 import React, { useEffect, useState } from 'react'
+import { Tabs } from './Tabs'
 
 const secrets_list_current = String.raw`
   secret_s8={name=\\"s8\\", value={ \\"secret\\": \\"uyiyu/ZkVoP3pHKjZhaSOF9QUk9EIn0=\\" }, description=\\"Secrets for s8 Database\\"}, 
@@ -50,18 +51,22 @@ export const DecodedList = () => {
 
 
   const [textAreaInput, setTextAreaInput] = useState(decoded)
-  const [textOutput, setTextOutput] = useState('')
+  const [textOutput, setTextOutput] = useState({
+    text:'',
+    isError: false
+  })
   const [isDecode, setDecode] = useState(true)
   const [prettyJson, setPrettyJson] = useState('none') // 'none', 'json', 'doublebarjson'
+
 
   useEffect(() => {
     if(isDecode) {
       const textDecoded = decodeBase64(textAreaInput)
-      setTextOutput(textDecoded)
+      setTextOutput({...textOutput, text:textDecoded})
     }
     else {
       const textEncoded = encodeBase64(textAreaInput)
-      setTextOutput(textEncoded)
+      setTextOutput({...textOutput, text:textEncoded})
     }
   },[textAreaInput, isDecode])
 
@@ -70,11 +75,30 @@ export const DecodedList = () => {
   };
 
   const handleTextAreaOutputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setTextOutput(event.target.value);
+    setTextOutput({...textOutput, text:event.target.value});
   };
+
+  const handleSwitchMode = () => {
+    const aux = textAreaInput
+    setTextAreaInput(textOutput.text)
+    setTextOutput({...textOutput,text:aux})
+    setDecode(!isDecode)
+  }
+
+  const handleSetDecodeMode = () => {
+    if(isDecode) return
+    setDecode(!isDecode)
+  }
+
+  const handleSetEncodeMode = () => {
+    if(!isDecode) return
+    setDecode(!isDecode)
+  }
 
   return (
     <section className='flex flex-col'>
+
+      <Tabs isDecode={isDecode} handleSetDecodeMode={handleSetDecodeMode} handleSetEncodeMode={handleSetEncodeMode}/>
       <div className="flex flex-col my-8 ">
         <textarea 
           placeholder="Paste here the Secret List in Base64"
@@ -83,29 +107,45 @@ export const DecodedList = () => {
           className="border-gray-300 border-2 min-h-60 rounded-md p-2"
         />
         <div className="flex gap-2">
-          <button className="text-white rounded-md p-2 my-2 w-full" onClick={() => setDecode(true)}>Decode</button>
-          <button className="text-white rounded-md p-2 my-2 w-full" onClick={() => setDecode(false)}>Encode</button>
+          {
+            isDecode 
+            ? <button className="text-white rounded-md p-2 my-2 w-full" onClick={() => setDecode(true)}>Decode</button>
+            : <button className="text-white rounded-md p-2 my-2 w-full" onClick={() => setDecode(false)}>Encode</button>
+          }
+          <button className="text-white rounded-md p-2 my-2" onClick={handleSwitchMode}>Switch</button>
         </div>
-      </div>
-
-      <div>
-        <button className="text-white rounded-md p-2 my-2" onClick={() => setPrettyJson('none')}>Raw</button>
-        <button className="text-white rounded-md p-2 my-2" onClick={() => setPrettyJson('json')}>Format Pretty JSON</button>
-        <button className="text-white rounded-md p-2 my-2" onClick={() => setPrettyJson('doublebarjson')}>DoubleBar Pretty JSON</button>
       </div>
 
       <textarea 
         placeholder="Result"
         value={
-          prettyJson === 'none' 
-            ? textOutput 
-            : prettyJson === 'json' 
-              ? JSON.stringify(textOutput, null, 2)
-              : JSON.stringify(fixFormatJsonform(textOutput), null, 2)
+          //prettyJson === 'none' 
+          //  ? 
+            textOutput.text
+            //: prettyJson === 'json' 
+            //  ? JSON.stringify(textOutput, null, 2)
+            //  : JSON.stringify(fixFormatJsonform(textOutput), null, 2)
         }
         onChange={handleTextAreaOutputChange}
         className="border-gray-300 border-2 min-h-60 rounded-md p-2"
       />      
+
+      <h3>Visualization</h3>  
+      <div className='flex gap-2'>
+        <button className="text-white rounded-md p-2 my-2" onClick={() => setPrettyJson('none')}>Raw</button>
+        <button className="text-white rounded-md p-2 my-2" onClick={() => setPrettyJson('json')}>Format Pretty JSON</button>
+        <button className="text-white rounded-md p-2 my-2" onClick={() => setPrettyJson('doublebarjson')}>DoubleBar Pretty JSON</button>
+      </div>
+
+      <pre className="w-80 bg-red-200">
+        {
+          /*prettyJson === 'none' 
+            ? JSON.stringify(textOutput, null, 2)
+            : prettyJson === 'json' 
+              ? JSON.stringify(textOutput, null, 2)
+              : JSON.stringify(fixFormatJsonform(textOutput), null, 2)*/
+        }
+      </pre>
     </section>
 
   )
