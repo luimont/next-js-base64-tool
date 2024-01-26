@@ -119,7 +119,7 @@ export const DecodedList = () => {
         </div> 
       */}
 
-      <TextArea textAreaInput={textAreaInput} isDecode={isDecode} setDecode={setDecode} handleTextAreaChange={handleTextAreaInputChange} handleSwitchMode={handleSwitchMode} />
+      <TextArea textAreaValue={textAreaInput} isDecode={isDecode} setDecode={setDecode} handleTextAreaChange={handleTextAreaInputChange} handleSwitchMode={handleSwitchMode} />
 
       {/*       
         <textarea 
@@ -136,7 +136,7 @@ export const DecodedList = () => {
           className="border-gray-300 border-2 min-h-60 rounded-md p-2"
         />       
       */}
-      <TextArea isResultTextArea={true} textAreaInput={textOutput.text} isDecode={isDecode} setDecode={setDecode} handleTextAreaChange={handleTextAreaOutputChange} handleSwitchMode={handleSwitchMode} />
+      <TextArea isResultTextArea={true} textAreaValue={textOutput.text} isDecode={isDecode} setDecode={setDecode} handleTextAreaChange={handleTextAreaOutputChange} handleSwitchMode={handleSwitchMode} />
 
       <h3>Visualization</h3>  
       <div className='flex gap-2'>
