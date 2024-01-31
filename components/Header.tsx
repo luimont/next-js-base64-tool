@@ -13,7 +13,7 @@ export const Header = () => {
           Base64 Tool
         </h1>
         <div className='size-20'>
-          <Image src="/base64icon.png" alt="logo" width={70} height={40} layout="responsive"/>
+          <Image src="/base64icon.png" alt="logo" width={70} height={40} layout='responsive'/>
         </div>
       </div>
 

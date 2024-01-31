@@ -4,6 +4,7 @@ import { decodeBase64, encodeBase64, fixFormatJsonform } from '@/utils/functions
 import React, { useEffect, useState } from 'react'
 import { Tabs } from './Tabs'
 import { TextArea } from './TextArea'
+import { Toast } from './Toast'
 
 const secrets_list_current = String.raw`
   secret_s8={name=\\"s8\\", value={ \\"secret\\": \\"uyiyu/ZkVoP3pHKjZhaSOF9QUk9EIn0=\\" }, description=\\"Secrets for s8 Database\\"}, 
@@ -49,8 +50,6 @@ export const DecodedList = () => {
     }
   ]
 
-
-
   const [textAreaInput, setTextAreaInput] = useState(decoded)
   const [textOutput, setTextOutput] = useState({
     text:'',
@@ -58,6 +57,7 @@ export const DecodedList = () => {
   })
   const [isDecode, setDecode] = useState(true)
   const [prettyJson, setPrettyJson] = useState('none') // 'none', 'json', 'doublebarjson'
+
 
 
   useEffect(() => {
@@ -70,6 +70,7 @@ export const DecodedList = () => {
       setTextOutput({...textOutput, text:textEncoded})
     }
   },[textAreaInput, isDecode])
+
 
   const handleTextAreaInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTextAreaInput(event.target.value);
@@ -99,44 +100,26 @@ export const DecodedList = () => {
   return (
     <section className='flex flex-col'>
 
+      
+
       <Tabs isDecode={isDecode} handleSetDecodeMode={handleSetDecodeMode} handleSetEncodeMode={handleSetEncodeMode}/>
-      {/* 
-        <div className="flex flex-col my-8 ">
-          <textarea 
-            placeholder="Paste here the Secret List in Base64"
-            value={textAreaInput} 
-            onChange={handleTextAreaChange} 
-            className="border-gray-300 border-2 min-h-60 rounded-md p-2"
-          />
-          <div className="flex gap-2">
-            {
-              isDecode 
-              ? <button className="text-white rounded-md p-2 my-2 w-full" onClick={() => setDecode(true)}>Decode</button>
-              : <button className="text-white rounded-md p-2 my-2 w-full" onClick={() => setDecode(false)}>Encode</button>
-            }
-            <button className="text-white rounded-md p-2 my-2" onClick={handleSwitchMode}>Switch</button>
-          </div>
-        </div> 
-      */}
 
-      <TextArea textAreaValue={textAreaInput} isDecode={isDecode} setDecode={setDecode} handleTextAreaChange={handleTextAreaInputChange} handleSwitchMode={handleSwitchMode} />
-
-      {/*       
-        <textarea 
-          placeholder="Result"
-          value={
-            //prettyJson === 'none' 
-            //  ? 
-              textOutput.text
-              //: prettyJson === 'json' 
-              //  ? JSON.stringify(textOutput, null, 2)
-              //  : JSON.stringify(fixFormatJsonform(textOutput), null, 2)
-          }
-          onChange={handleTextAreaOutputChange}
-          className="border-gray-300 border-2 min-h-60 rounded-md p-2"
-        />       
-      */}
-      <TextArea isResultTextArea={true} textAreaValue={textOutput.text} isDecode={isDecode} setDecode={setDecode} handleTextAreaChange={handleTextAreaOutputChange} handleSwitchMode={handleSwitchMode} />
+      <TextArea 
+        textAreaValue={textAreaInput} 
+        isDecode={isDecode} 
+        setDecode={setDecode} 
+        handleTextAreaChange={handleTextAreaInputChange} 
+        handleSwitchMode={handleSwitchMode} 
+      />
+      
+      <TextArea 
+        isResultTextArea={true} 
+        textAreaValue={textOutput.text} 
+        isDecode={isDecode} 
+        setDecode={setDecode} 
+        handleTextAreaChange={handleTextAreaOutputChange} 
+        handleSwitchMode={handleSwitchMode} 
+      />
 
       <h3>Visualization</h3>  
       <div className='flex gap-2'>
@@ -145,6 +128,8 @@ export const DecodedList = () => {
         <button className="text-white rounded-md p-2 my-2" onClick={() => setPrettyJson('doublebarjson')}>DoubleBar Pretty JSON</button>
       </div>
 
+      
+      
       <pre className="w-80 bg-red-200">
         {
           /*prettyJson === 'none' 

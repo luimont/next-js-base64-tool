@@ -1,20 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Toast } from './Toast';
+import Image from 'next/image';
 
 export const TextArea = ({...props}) => {
   const {textAreaValue, isDecode, handleTextAreaChange, handleSwitchMode, isResultTextArea} = props
+
+  const [toastVisible, setToastVisible] = useState(false)
+
+ // console.log("Initial  isVisible:: "+isVisible)
+  
+  const swowToast = () => {
+    console.log('executin showtoast')
+    setToastVisible(true)
+    setTimeout(() => {
+      setToastVisible(false)
+    }, 3000);
+  }
+
+
 
   const handleCopyClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
       await navigator.clipboard.writeText(textAreaValue);
       console.log('Texto copiado al portapapeles:', textAreaValue);
+      swowToast()
     } catch (err) {
       console.error('Error al copiar al portapapeles:', err);
     }
   };
 
   return (
+    
     <div className="my-2" >      
+
       <form>
         <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
           <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
@@ -36,7 +55,7 @@ export const TextArea = ({...props}) => {
                 </button>
                 <button type="button" className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
                   <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 20">
-                    <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M1 6v8a5 5 0 1 0 10 0V4.5a3.5 3.5 0 1 0-7 0V13a2 2 0 0 0 4 0V6"/>
+                    <path stroke="currentColor" strokeLinejoin="round" strokeWidth="2" d="M1 6v8a5 5 0 1 0 10 0V4.5a3.5 3.5 0 1 0-7 0V13a2 2 0 0 0 4 0V6"/>
                   </svg>
                   <span className="sr-only">Attach file</span>
                 </button>
@@ -51,8 +70,10 @@ export const TextArea = ({...props}) => {
             : 
             <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
               <button onClick={handleCopyClick} type="submit" className="inline-flex items-center py-2.5 px-4 text-s font-medium text-center text-white bg-gray-500 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-gray-400">                      
+                <Image src="/icons/iconCopy.svg" alt="Descripción del SVG" width={20} height={20} className='mr-2'/>
                 Copy
               </button>
+              <Toast visible={toastVisible}/>
             </div>
           }
         </div>

@@ -4,7 +4,19 @@ import { Html, Head, Main, NextScript } from "next/document";
 export default function Document() {
   return (
     <Html lang="en">
-      <Head />
+      <Head>
+        {/* 
+        // eslint-disable-next-line @next/next/no-title-in-document-head */
+        //<title>Base64 Tool</title>
+        }
+        <meta property="og:title" content="Base 64 Tool" />
+        <meta property="og:type" content="article" />
+        <meta property="og:description" content="Decode/Encode simple & fast Base 64" />
+        <meta property="og:image" content="/base64icon.png" />
+      </Head>
+
+
+      
       
       <body>
 
