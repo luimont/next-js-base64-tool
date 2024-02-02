@@ -47,10 +47,15 @@ export const TextArea = ({textAreaError = false, ...props}) => {
 
       <div>
         <div className={`
-        w-full mb-4 border border-gray-200 rounded-b-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600`
-        }>
-          <div className={`px-4 py-2 rounded-b-lg ${textAreaError ? 'bg-gray-100 dark:bg-gray-500' : 'bg-white dark:bg-gray-800'}`}
-          >
+          w-full mb-4 border border-gray-200 
+          bg-gray-50 dark:bg-gray-700 dark:border-gray-600
+          ${isResultTextArea ? 'rounded-lg' :'rounded-b-lg'}
+        `}>
+          <div className={`
+            px-4 py-2 
+            ${isResultTextArea ? 'rounded-lg' :'rounded-b-lg'}
+            ${textAreaError ? 'bg-gray-100 dark:bg-gray-500' : 'bg-white dark:bg-gray-800'}
+          `}>
             <label htmlFor="comment" className="sr-only">Your comment</label>
             <textarea 
               disabled={textAreaError} 
