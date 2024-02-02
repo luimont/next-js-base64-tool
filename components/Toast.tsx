@@ -7,17 +7,9 @@ interface ToastProps {
 
 export const Toast = (props:any) => {
 
-
   const {visible} = props
-  console.log('____visibble:::::'+visible)
   
-  //const [isVisible, setIsVisible] = useState(visible);
-  //console.log('isVisibble:::::'+isVisible)
-
   //TODO: al desaparecer el toast no funciona la animación de 'slide-out'
-
-  //console.log("Initial  isVisible:: "+isVisible)
-  
 
   const handleVisibility = () => {
     //setIsVisible(false)

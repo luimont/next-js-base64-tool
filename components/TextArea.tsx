@@ -100,7 +100,6 @@ export const TextArea = ({textAreaError = false, ...props}) => {
                 className={`
                   inline-flex justify-center items-center p-2 rounded 
                   text-gray-500 dark:text-gray-400  
-                  color-white
                   ${textAreaError ? 'hover:none' : 'hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 cursor-pointer '}
               `}>
                 <Image src="/icons/iconCopy.svg" alt="copy" width={20} height={20} />
