@@ -9,7 +9,7 @@ export const decodeBase64 = (text:string) => {
     const decodedText = atob(text);
     return decodedText
   } catch (error) {
-    return 'Base 64 Error'
+    return 'Error:Invalid_Base64'
   }
 };
 

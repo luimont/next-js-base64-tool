@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { Toast } from './Toast';
 import Image from 'next/image';
 
-export const TextArea = ({...props}) => {
+export const TextArea = ({textAreaError = false, ...props}) => {
   const {textAreaValue, isDecode, handleTextAreaChange, handleSwitchMode, isResultTextArea} = props
 
   const [toastVisible, setToastVisible] = useState(false)
 
- // console.log("Initial  isVisible:: "+isVisible)
+  // console.log("Initial  isVisible:: "+isVisible)
   
   const swowToast = () => {
     console.log('executin showtoast')
@@ -16,8 +16,6 @@ export const TextArea = ({...props}) => {
       setToastVisible(false)
     }, 3000);
   }
-
-
 
   const handleCopyClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -35,15 +33,32 @@ export const TextArea = ({...props}) => {
     <div className="my-2" >      
 
       <form>
-        <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-          <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+        <div className={`
+        w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600`
+        }>
+          <div className={`px-4 py-2 rounded-t-lg ${textAreaError ? 'bg-gray-100 dark:bg-gray-500' : 'bg-white dark:bg-gray-800'}`}
+          >
             <label htmlFor="comment" className="sr-only">Your comment</label>
-            <textarea id="comment" rows={4} className="w-full min-h-40 px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write a text..." required value={textAreaValue} onChange={handleTextAreaChange} />
+            <textarea 
+              disabled={textAreaError} 
+              id="comment" 
+              rows={4} 
+              className={`
+                w-full min-h-40 px-0 text-sm 
+                text-gray-900  border-0  focus:ring-0 dark:text-white dark:placeholder-gray-400
+                ${textAreaError ? 'font-thin bg-gray-100 dark:bg-gray-500' : 'bg-white dark:bg-gray-800'}
+              `}
+              
+              placeholder="Write a text..." 
+              required 
+              value={textAreaValue} 
+              onChange={handleTextAreaChange} 
+            />
           </div>
           {
             !isResultTextArea 
             ? 
-            <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+            <div className="flex items-center justify-between px-2.5 py-2 border-t dark:border-gray-600">
               <button type="submit" className="inline-flex items-center py-2.5 px-4 text-s font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-500">
                 {
                   isDecode ? 'Decode' : 'Encode'
@@ -68,8 +83,22 @@ export const TextArea = ({...props}) => {
               </div>
             </div>
             : 
-            <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
-              <button onClick={handleCopyClick} type="submit" className="inline-flex items-center py-2.5 px-4 text-s font-medium text-center text-white bg-gray-500 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-gray-400">                      
+            <div className="flex items-center justify-between px-2.5 py-2 border-t dark:border-gray-600">
+              <button 
+                onClick={handleCopyClick} 
+                disabled={textAreaError}
+                //type="submit" 
+                className={`
+                  inline-flex 
+                  items-center 
+                  py-2.5 px-4 text-s 
+                  font-medium 
+                  text-center 
+                  text-white rounded-lg focus:ring-4
+                  dark:bg-gray-500  focus:ring-blue-200 dark:focus:ring-blue-900  bg-gray-400/70
+                  ${textAreaError ? 'hover:none' : 'hover:bg-gray-400'}
+                `}
+              >                      
                 <Image src="/icons/iconCopy.svg" alt="Descripción del SVG" width={20} height={20} className='mr-2'/>
                 Copy
               </button>

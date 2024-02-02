@@ -1,3 +1,4 @@
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Html, Head, Main, NextScript } from "next/document";
 
@@ -15,11 +16,8 @@ export default function Document() {
         <meta property="og:image" content="/base64icon.png" />
       </Head>
 
-
-      
-      
       <body>
-
+        
       {/* Este es el contenedor para background de Tailwind */}
       {/* <div className="fixed left-0 top-0 -z-10 h-full w-full"> */}
         {/* Este es el background de Tailwind */}
@@ -37,9 +35,7 @@ export default function Document() {
         <Header />
         <Main />
         <NextScript />
-        <footer className="py-10 flex justify-center">
-          <p>Aqui el Footer</p>
-        </footer>
+        <Footer />
         {/* <p>Esto es <code>_document.tsx</code></p> */}
       </body>
     </Html>

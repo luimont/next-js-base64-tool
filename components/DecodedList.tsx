@@ -63,11 +63,16 @@ export const DecodedList = () => {
   useEffect(() => {
     if(isDecode) {
       const textDecoded = decodeBase64(textAreaInput)
-      setTextOutput({...textOutput, text:textDecoded})
+      const errorDecodeBase64 = textDecoded == 'Error:Invalid_Base64'
+
+      if (errorDecodeBase64)
+        setTextOutput({text:'Invalid Base 64', isError:true})
+      else
+        setTextOutput({text:textDecoded, isError:false})
     }
     else {
       const textEncoded = encodeBase64(textAreaInput)
-      setTextOutput({...textOutput, text:textEncoded})
+      setTextOutput({isError:false, text:textEncoded})
     }
   },[textAreaInput, isDecode])
 
@@ -100,12 +105,11 @@ export const DecodedList = () => {
   return (
     <section className='flex flex-col'>
 
-      
-
       <Tabs isDecode={isDecode} handleSetDecodeMode={handleSetDecodeMode} handleSetEncodeMode={handleSetEncodeMode}/>
 
       <TextArea 
         textAreaValue={textAreaInput} 
+        textAreaError={false}
         isDecode={isDecode} 
         setDecode={setDecode} 
         handleTextAreaChange={handleTextAreaInputChange} 
@@ -115,6 +119,7 @@ export const DecodedList = () => {
       <TextArea 
         isResultTextArea={true} 
         textAreaValue={textOutput.text} 
+        textAreaError={textOutput.isError}
         isDecode={isDecode} 
         setDecode={setDecode} 
         handleTextAreaChange={handleTextAreaOutputChange} 
