@@ -55,7 +55,7 @@ export const DecodedList = () => {
     text:'',
     isError: false
   })
-  const [isDecode, setDecode] = useState(true)
+  const [isDecode, setDecode] = useState(false)
   const [prettyJson, setPrettyJson] = useState('none') // 'none', 'json', 'doublebarjson'
 
 
@@ -126,12 +126,14 @@ export const DecodedList = () => {
         handleSwitchMode={handleSwitchMode} 
       />
 
-      <h3>Visualization</h3>  
-      <div className='flex gap-2'>
-        <button className="text-white rounded-md p-2 my-2" onClick={() => setPrettyJson('none')}>Raw</button>
-        <button className="text-white rounded-md p-2 my-2" onClick={() => setPrettyJson('json')}>Format Pretty JSON</button>
-        <button className="text-white rounded-md p-2 my-2" onClick={() => setPrettyJson('doublebarjson')}>DoubleBar Pretty JSON</button>
-      </div>
+      {/* 
+        <h3>Visualization</h3>  
+        <div className='flex gap-2'>
+          <button className="text-white rounded-md p-2 my-2" onClick={() => setPrettyJson('none')}>Raw</button>
+          <button className="text-white rounded-md p-2 my-2" onClick={() => setPrettyJson('json')}>Format Pretty JSON</button>
+          <button className="text-white rounded-md p-2 my-2" onClick={() => setPrettyJson('doublebarjson')}>DoubleBar Pretty JSON</button>
+        </div> 
+      */}
 
       
       
