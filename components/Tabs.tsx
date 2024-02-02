@@ -4,7 +4,7 @@ import React from 'react'
 export const Tabs = ({...props}) => {
   const {isDecode, handleSetDecodeMode, handleSetEncodeMode} = props
   return (
-    <div className='flex flex-col mb-6'>
+    <div className='flex flex-col'>
       <div className="sm:hidden">
           <label htmlFor="tabs" className="sr-only">Select your country</label>
           <select id="tabs" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -18,7 +18,7 @@ export const Tabs = ({...props}) => {
           <a className={`
               cursor-pointer 
               inline-block 
-              w-full p-4 rounded-s-lg 
+              w-full p-4 rounded-tl-lg
               ${ 
                 !isDecode 
                   ? "text-gray-900 bg-gray-100 border-r border-gray-200 dark:border-gray-700 focus:ring-4 focus:ring-blue-300 active focus:outline-none dark:bg-gray-700 dark:text-white"
@@ -34,7 +34,7 @@ export const Tabs = ({...props}) => {
           <a className={`
             cursor-pointer 
             inline-block 
-            w-full p-4 rounded-e-lg 
+            w-full p-4 rounded-tr-lg
             ${ 
               isDecode 
                 ? "text-gray-900 bg-gray-100 border-r border-gray-200 dark:border-gray-700 focus:ring-4 focus:ring-blue-300 active focus:outline-none dark:bg-gray-700 dark:text-white"

@@ -17,7 +17,10 @@ export const Header = () => {
         </div>
       </div>
 
-      <h2 className='text-l font-semibold mb-8 max-w-xl'><em>Discover a powerful tool that allows you to efficiently Encode and Decode data between Base64 representations and raw text.</em></h2>
+      {/* <h2 className='text-l font-semibold mb-8 max-w-xl'> */}
+      <h2 className='mb-4 text-[18px] font-normal text-gray-500 dark:text-gray-400 max-w-xl'>
+        Discover a powerful tool that allows you to efficiently <em className='text-cyan-900/70 dark:text-cyan-200/70'>Encode</em> and <em className='text-cyan-900/70 dark:text-cyan-200/70'>Decode</em> data between Base64 representations and raw text.
+      </h2>
     </header>
   )
 }

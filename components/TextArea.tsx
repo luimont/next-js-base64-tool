@@ -29,15 +29,27 @@ export const TextArea = ({textAreaError = false, ...props}) => {
     }
   };
 
+  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    // Obtener el texto del portapapeles
+    const clipboardData = e.clipboardData || window.Clipboard;
+    const pastedText = clipboardData.getData('Text');
+
+    // Pegar el texto en el input
+    e.preventDefault();
+    console.log("clipboard"+pastedText)
+    //setTextAreaValue(pastedText)
+  };
+
+
   return (
     
-    <div className="my-2" >      
+    <div className="mb-2" >      
 
       <div>
         <div className={`
-        w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600`
+        w-full mb-4 border border-gray-200 rounded-b-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600`
         }>
-          <div className={`px-4 py-2 rounded-t-lg ${textAreaError ? 'bg-gray-100 dark:bg-gray-500' : 'bg-white dark:bg-gray-800'}`}
+          <div className={`px-4 py-2 rounded-b-lg ${textAreaError ? 'bg-gray-100 dark:bg-gray-500' : 'bg-white dark:bg-gray-800'}`}
           >
             <label htmlFor="comment" className="sr-only">Your comment</label>
             <textarea 
