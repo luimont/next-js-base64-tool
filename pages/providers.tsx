@@ -2,7 +2,7 @@
 
 import { ThemeProvider } from "next-themes"
 
-export function Providers({children}: {children: React.ReactNode}){
+export const Providers = ({children}: {children: React.ReactNode}) => {
   return (
     /* Este provider es necesario para evitar el parpadeo al recargar la pagina y obtener el tema */
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
