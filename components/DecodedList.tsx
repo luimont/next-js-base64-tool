@@ -4,7 +4,6 @@ import { decodeBase64, encodeBase64, fixFormatJsonform } from '@/utils/functions
 import { useEffect, useState } from 'react'
 import { Tabs } from './Tabs'
 import { TextArea } from './TextArea'
-import { Toast } from './Toast'
 
 const secrets_list_current = String.raw`
   secret_s8={name=\\"s8\\", value={ \\"secret\\": \\"uyiyu/ZkVoP3pHKjZhaSOF9QUk9EIn0=\\" }, description=\\"Secrets for s8 Database\\"}, 
@@ -18,7 +17,8 @@ const secrets_list_jsonform = String.raw`
 {"secret_s10":{"name":\\"s10\\", "value":{ \\"secret\\": \\"eyJ1cFwcm9kIiwgInBhc3N3b3JkIjogImjencyZXkwEwX1BST0QifQ==\\" }, "description":\\"Secrets for s10 Database\\"}}
 `
 
-const decoded = String.raw`{ \\"name\\" : \\"mddd\\", \\"value\\" : { \\"secret\\": \\"fdfdfdsfsdfsddfs==\\" }, \\"description\\" : \\"Secrets for Database\\"}, { \\"name\\" : \\"s7\\", \\"value\\" : { \\"secret\\": \\"ffdsfsd+fdfsdfsdfsd==\\" }, \\"description\\" : \\"Secrets for Database\\"}`
+//const decoded = String.raw`{ \\"name\\" : \\"mddd\\", \\"value\\" : { \\"secret\\": \\"fdfdfdsfsdfsddfs==\\" }, \\"description\\" : \\"Secrets for Database\\"}, { \\"name\\" : \\"s7\\", \\"value\\" : { \\"secret\\": \\"ffdsfsd+fdfsdfsdfsd==\\" }, \\"description\\" : \\"Secrets for Database\\"}`
+const decoded = String.raw`This it an text example that you can encode and decode on base64: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at mauris ac justo fringilla malesuada. Vestibulum tincidunt tortor eget bibendum bibendum`
 
 const text_example_input = "Tool to manage List Secrets, simply you paste the Base64 and it generate a List for all secrets that you can edit and save"
 
