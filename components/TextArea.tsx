@@ -4,6 +4,7 @@ import { Toggle } from './Toggle';
 import { IconCopy } from '@/icons/IconCopy';
 import { IconSwitch } from '@/icons/IconSwitch';
 import { IconPaste } from '@/icons/IconPaste';
+import { IconX } from '@/icons/IconX';
 
 export const TextArea = ({textAreaError = false, ...props}) => {
   const {textAreaValue, isDecode, handleTextAreaChange, setTextAreaInput, handleSwitchMode, isResultTextArea} = props
@@ -40,6 +41,10 @@ export const TextArea = ({textAreaError = false, ...props}) => {
         setTextAreaInput(clipboardText)
       }
     });
+  };
+
+  const handleClearClick = () => {
+    setTextAreaInput('')
   };
 
 
@@ -96,6 +101,13 @@ export const TextArea = ({textAreaError = false, ...props}) => {
                   className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
                 >
                   <IconPaste />
+                </button>
+                <button 
+                  type="button" 
+                  onClick={handleClearClick} 
+                  className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+                >
+                  <IconX />
                 </button>
               </div>
             </div>
