@@ -1,6 +1,4 @@
 
-import React from 'react'
-
 export const Tabs = ({...props}) => {
   const {isDecode, handleSetDecodeMode, handleSetEncodeMode} = props
   return (

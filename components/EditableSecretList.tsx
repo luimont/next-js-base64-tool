@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { EditableItem } from './EditableItem';
 
 // Definir el tipo para un objeto de secretos

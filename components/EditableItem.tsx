@@ -1,4 +1,4 @@
-import React, { FunctionComponentFactory, useState } from 'react'
+import { FunctionComponentFactory, useState } from 'react'
 
 // Definir el tipo para un objeto de secretos
 type Secret = {

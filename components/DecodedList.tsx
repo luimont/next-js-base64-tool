@@ -1,7 +1,7 @@
 //import { secret_decoded } from '@/mocks/secrets'
 
 import { decodeBase64, encodeBase64, fixFormatJsonform } from '@/utils/functions'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Tabs } from './Tabs'
 import { TextArea } from './TextArea'
 import { Toast } from './Toast'

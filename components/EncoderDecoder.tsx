@@ -1,5 +1,5 @@
 //import { secret_decoded, secret_encoded } from '@/mocks/secrets';
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 export const EncoderDecoder = () => {
   const [inputText, setInputText] = useState('secret_decoded');
