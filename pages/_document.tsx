@@ -5,7 +5,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="en" suppressHydrationWarning>
       <Head>
         {/* 
         // eslint-disable-next-line @next/next/no-title-in-document-head */
@@ -18,9 +18,7 @@ export default function Document() {
       </Head>
 
       <body>
-        
         <BackgroundContainer />
-    
         <Header />
         <Main />
         <NextScript />
