@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { Toast } from './Toast';
 import Image from 'next/image';
 import { Toggle } from './Toggle';
+import { IconCopy } from '@/icons/IconCopy';
+import { IconSwitch } from '@/icons/IconSwitch';
+import { IconPaste } from '@/icons/IconPaste';
 
 export const TextArea = ({textAreaError = false, ...props}) => {
   const {textAreaValue, isDecode, handleTextAreaChange, handleSwitchMode, isResultTextArea} = props
@@ -81,13 +84,13 @@ export const TextArea = ({textAreaError = false, ...props}) => {
                   isDecode ? 'Decode' : 'Encode'
                 }
               </button>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <Toggle title={"Live"} />
                 <button type="button" onClick={handleSwitchMode} className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                  <Image src="/icons/iconSwitch.svg" alt="switch" width={20} height={20} />
+                  <IconSwitch />
                 </button>
                 <button type="button" className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                  <Image src="/icons/iconPaste.svg" alt="paste" width={20} height={20} />
+                  <IconPaste />
                 </button>
               </div>
             </div>
@@ -102,7 +105,7 @@ export const TextArea = ({textAreaError = false, ...props}) => {
                   text-gray-500 dark:text-gray-400  
                   ${textAreaError ? 'hover:none' : 'hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 cursor-pointer '}
               `}>
-                <Image src="/icons/iconCopy.svg" alt="copy" width={20} height={20} />
+                <IconCopy className='w-6 h-6'/>
               </button>
 
               <Toast visible={toastVisible}/>

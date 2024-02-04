@@ -115,7 +115,7 @@ export const DecodedList = () => {
         handleTextAreaChange={handleTextAreaInputChange} 
         handleSwitchMode={handleSwitchMode} 
       />
-      
+     
       <TextArea 
         isResultTextArea={true} 
         textAreaValue={textOutput.text} 
