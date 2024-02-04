@@ -126,8 +126,8 @@ export const TextArea = ({ ...props}) => {
                 onClick={isDecode ? handleDecodeClick : handleEncodeClick }
                 className={`
                   inline-flex items-center py-2.5 px-4 text-s font-medium text-center 
-                  rounded-lg focus:ring-4 text-white focus:ring-blue-200
-                  ${liveMode ? 'bg-blue-700/30' : 'bg-blue-700'}
+                  rounded-lg focus:ring-4 focus:ring-blue-200
+                  ${liveMode ? 'bg-blue-700/30 text-white dark:text-gray-500' : 'text-white bg-blue-700'}
                   dark:focus:ring-blue-900 hover:bg-blue-500"
                 `}
               >
