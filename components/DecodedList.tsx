@@ -84,6 +84,7 @@ export const DecodedList = () => {
         EncodeText()
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[textAreaInput, isDecode, liveMode])
 
 
