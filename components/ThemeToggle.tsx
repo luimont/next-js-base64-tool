@@ -16,12 +16,11 @@ export default function ThemeToggle() {
   useEffect(() => setMounted(true), [])
 
   if(!mounted) return (
-      <div className="w-18 h-18 inline-block">
+      <>
         {/* 
           El Theme aún no se conoce xq este componente se ejecuta del lado del cliente (luego de la ejecución del SSR) 
-          Este div evita el salto de espacio cuando aun no se ha colocado el boton de toggle
         */}
-      </div>
+      </>
   )
   
   else return (
