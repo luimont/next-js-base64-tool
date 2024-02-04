@@ -28,12 +28,14 @@ export default function ThemeToggle() {
       {
         resolvedTheme === 'dark' 
         ? 
-          <button onClick={() => setTheme('light')} className="bg-transparent">
+        <button onClick={() => setTheme('light')} className="bg-transparent items-center flex gap-2">
+            <span className="text-sm">Theme</span>
             <IconSun />
           </button>
 
         :
-        <button onClick={() => setTheme('dark')} className="bg-transparent">
+        <button onClick={() => setTheme('dark')} className="bg-transparent  items-center flex gap-2">
+          <span className="text-sm">Theme</span>
           <IconMoon className="stroke-gray-500"/>
         </button>
       }
