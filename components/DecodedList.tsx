@@ -56,25 +56,35 @@ export const DecodedList = () => {
     isError: false
   })
   const [isDecode, setDecode] = useState(false)
+  const [liveMode, setLiveMode] = useState(true)
+
   const [prettyJson, setPrettyJson] = useState('none') // 'none', 'json', 'doublebarjson'
 
+  const DecodeText = () => {
+    const textDecoded = decodeBase64(textAreaInput)
+    const errorDecodeBase64 = textDecoded == 'Error:Invalid_Base64'
 
+    if (errorDecodeBase64)
+      setTextOutput({text:'Invalid Base 64', isError:true})
+    else
+      setTextOutput({text:textDecoded, isError:false})
+  }
+
+  const EncodeText = () => {
+    const textEncoded = encodeBase64(textAreaInput)
+    setTextOutput({isError:false, text:textEncoded})
+  }
 
   useEffect(() => {
-    if(isDecode) {
-      const textDecoded = decodeBase64(textAreaInput)
-      const errorDecodeBase64 = textDecoded == 'Error:Invalid_Base64'
-
-      if (errorDecodeBase64)
-        setTextOutput({text:'Invalid Base 64', isError:true})
-      else
-        setTextOutput({text:textDecoded, isError:false})
+    if(liveMode){
+      if(isDecode) {
+        DecodeText()
+      }
+      else {
+        EncodeText()
+      }
     }
-    else {
-      const textEncoded = encodeBase64(textAreaInput)
-      setTextOutput({isError:false, text:textEncoded})
-    }
-  },[textAreaInput, isDecode])
+  },[textAreaInput, isDecode, liveMode])
 
 
   const handleTextAreaInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -102,6 +112,14 @@ export const DecodedList = () => {
     setDecode(!isDecode)
   }
 
+  const handleDecodeClick = () => {
+    DecodeText()
+  };
+  const handleEncodeClick = () => {
+    EncodeText()
+  };
+
+
   return (
     <section className='flex flex-col'>
 
@@ -112,6 +130,10 @@ export const DecodedList = () => {
         textAreaError={false}
         isDecode={isDecode} 
         setDecode={setDecode} 
+        liveMode={liveMode}
+        setLiveMode={setLiveMode}
+        handleDecodeClick={handleDecodeClick}
+        handleEncodeClick={handleEncodeClick}
         handleTextAreaChange={handleTextAreaInputChange} 
         setTextAreaInput={setTextAreaInput}
         handleSwitchMode={handleSwitchMode} 

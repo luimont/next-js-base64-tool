@@ -6,8 +6,21 @@ import { IconSwitch } from '@/icons/IconSwitch';
 import { IconPaste } from '@/icons/IconPaste';
 import { IconX } from '@/icons/IconX';
 
-export const TextArea = ({textAreaError = false, ...props}) => {
-  const {textAreaValue, isDecode, handleTextAreaChange, setTextAreaInput, handleSwitchMode, isResultTextArea} = props
+export const TextArea = ({ ...props}) => {
+  const {
+    textAreaValue, 
+    isDecode, 
+    handleTextAreaChange, 
+    setTextAreaInput, 
+    handleSwitchMode, 
+    isResultTextArea, 
+    liveMode, 
+    setLiveMode, 
+    handleDecodeClick, 
+    handleEncodeClick, 
+    textAreaError = false
+  } = props
+
   const [toastVisible, setToastVisible] = useState(false)
 
   const swowToast = () => {
@@ -46,7 +59,10 @@ export const TextArea = ({textAreaError = false, ...props}) => {
   const handleClearClick = () => {
     setTextAreaInput('')
   };
-
+  
+  const handleLiveMode = (value: boolean) => {
+    console.log('handleLiveMode'+value)
+  };
 
 
   return (
@@ -85,22 +101,16 @@ export const TextArea = ({textAreaError = false, ...props}) => {
             !isResultTextArea 
             ? 
             <div className="flex items-center justify-between px-2.5 py-2 border-t dark:border-gray-600">
-              <button className="inline-flex items-center py-2.5 px-4 text-s font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-500">
-                {
-                  isDecode ? 'Decode' : 'Encode'
-                }
-              </button>
               <div className="flex items-center gap-2">
-                <Toggle title={"Live"} />
-                <button type="button" onClick={handleSwitchMode} className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                  <IconSwitch />
-                </button>
                 <button 
                   type="button" 
                   onClick={handlePasteButtonClick} 
                   className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
                 >
                   <IconPaste />
+                </button>
+                <button type="button" onClick={handleSwitchMode} className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                  <IconSwitch />
                 </button>
                 <button 
                   type="button" 
@@ -109,7 +119,22 @@ export const TextArea = ({textAreaError = false, ...props}) => {
                 >
                   <IconX />
                 </button>
+                <Toggle title={"Live"} liveMode={liveMode} setLiveMode={setLiveMode}/>
               </div>
+              <button 
+                disabled={liveMode}
+                onClick={isDecode ? handleDecodeClick : handleEncodeClick }
+                className={`
+                  inline-flex items-center py-2.5 px-4 text-s font-medium text-center 
+                  rounded-lg focus:ring-4 text-white focus:ring-blue-200
+                  ${liveMode ? 'bg-blue-700/30' : 'bg-blue-700'}
+                  dark:focus:ring-blue-900 hover:bg-blue-500"
+                `}
+              >
+                {
+                  isDecode ? 'Decode' : 'Encode'
+                }
+              </button>
             </div>
             :
             <div className="flex items-center justify-between px-2.5 py-2 border-t dark:border-gray-600">
