@@ -34,7 +34,7 @@ export default function ThemeToggle() {
 
         :
         <button onClick={() => setTheme('dark')} className="bg-transparent">
-          <IconMoon />
+          <IconMoon className="stroke-gray-500"/>
         </button>
       }
     </div>
