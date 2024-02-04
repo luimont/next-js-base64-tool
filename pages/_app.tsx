@@ -2,12 +2,12 @@
 
 import "@/styles/globals.css"
 import type { AppProps } from "next/app"
-import { Providers } from "./Provider"
+import { Provider } from "./Provider"
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Providers>
+    <Provider>
       <Component {...pageProps} />
-    </Providers>
+    </Provider>
   )
 }
