@@ -113,6 +113,7 @@ export const DecodedList = () => {
         isDecode={isDecode} 
         setDecode={setDecode} 
         handleTextAreaChange={handleTextAreaInputChange} 
+        setTextAreaInput={setTextAreaInput}
         handleSwitchMode={handleSwitchMode} 
       />
      

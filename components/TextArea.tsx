@@ -1,18 +1,14 @@
-import React, { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Toast } from './Toast';
-import Image from 'next/image';
 import { Toggle } from './Toggle';
 import { IconCopy } from '@/icons/IconCopy';
 import { IconSwitch } from '@/icons/IconSwitch';
 import { IconPaste } from '@/icons/IconPaste';
 
 export const TextArea = ({textAreaError = false, ...props}) => {
-  const {textAreaValue, isDecode, handleTextAreaChange, handleSwitchMode, isResultTextArea} = props
-
+  const {textAreaValue, isDecode, handleTextAreaChange, setTextAreaInput, handleSwitchMode, isResultTextArea} = props
   const [toastVisible, setToastVisible] = useState(false)
 
-  // console.log("Initial  isVisible:: "+isVisible)
-  
   const swowToast = () => {
     console.log('executin showtoast')
     setToastVisible(true)
@@ -25,23 +21,27 @@ export const TextArea = ({textAreaError = false, ...props}) => {
     e.preventDefault();
     try {
       await navigator.clipboard.writeText(textAreaValue);
-      console.log('Texto copiado al portapapeles:', textAreaValue);
+      //console.log('Texto copiado al portapapeles:', textAreaValue);
       swowToast()
     } catch (err) {
       console.error('Error al copiar al portapapeles:', err);
     }
   };
 
-  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
-    // Obtener el texto del portapapeles
-    const clipboardData = e.clipboardData || window.Clipboard;
-    const pastedText = clipboardData.getData('Text');
+  // Esto es para indicar a que elemento quiero pegar el texto desde el portapapeles
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-    // Pegar el texto en el input
-    e.preventDefault();
-    console.log("clipboard"+pastedText)
-    //setTextAreaValue(pastedText)
+  const handlePasteButtonClick = () => {
+    navigator.clipboard.readText().then((clipboardText) => {
+      // Asignar el texto del portapapeles al textarea
+      //console.log(clipboardText)
+      if (textareaRef.current) {
+        textareaRef.current.value = clipboardText;
+        setTextAreaInput(clipboardText)
+      }
+    });
   };
+
 
 
   return (
@@ -55,24 +55,25 @@ export const TextArea = ({textAreaError = false, ...props}) => {
           ${isResultTextArea ? 'rounded-lg' :'rounded-b-lg'}
         `}>
           <div className={`
-            px-4 py-2 
+            px-4 py-2
             ${isResultTextArea ? 'rounded-lg' :'rounded-b-lg'}
             ${textAreaError ? 'bg-gray-100 dark:bg-gray-500' : 'bg-white dark:bg-gray-800'}
           `}>
             <label htmlFor="comment" className="sr-only">Your comment</label>
-            <textarea 
-              disabled={textAreaError} 
-              id="comment" 
-              rows={4} 
+            <textarea
+              ref={isResultTextArea ? null : textareaRef}
+              disabled={textAreaError}
+              id="comment"
+              rows={4}
               className={`
-                w-full min-h-40 px-0 text-sm 
+                w-full min-h-40 px-0 text-sm
                 text-gray-900  border-0  focus:ring-0 dark:text-white dark:placeholder-gray-400
                 ${textAreaError ? 'font-thin bg-gray-100 dark:bg-gray-500' : 'bg-white dark:bg-gray-800'}
               `}
               placeholder="Write a text..."
-              required 
-              value={textAreaValue} 
-              onChange={handleTextAreaChange} 
+              required
+              value={textAreaValue}
+              onChange={handleTextAreaChange}
             />
           </div>
           {
@@ -89,7 +90,11 @@ export const TextArea = ({textAreaError = false, ...props}) => {
                 <button type="button" onClick={handleSwitchMode} className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
                   <IconSwitch />
                 </button>
-                <button type="button" className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                <button 
+                  type="button" 
+                  onClick={handlePasteButtonClick} 
+                  className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+                >
                   <IconPaste />
                 </button>
               </div>
