@@ -18,7 +18,7 @@ const secrets_list_jsonform = String.raw`
 `
 
 //const decoded = String.raw`{ \\"name\\" : \\"mddd\\", \\"value\\" : { \\"secret\\": \\"fdfdfdsfsdfsddfs==\\" }, \\"description\\" : \\"Secrets for Database\\"}, { \\"name\\" : \\"s7\\", \\"value\\" : { \\"secret\\": \\"ffdsfsd+fdfsdfsdfsd==\\" }, \\"description\\" : \\"Secrets for Database\\"}`
-const decoded = String.raw`This it an text example that you can encode and decode on base64: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at mauris ac justo fringilla malesuada. Vestibulum tincidunt tortor eget bibendum bibendum`
+const decoded = String.raw`This is an example of text that can be base64 encoded and decoded: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at mauris ac justo fringilla malesuada. Vestibulum tincidunt tortor eget bibendum bibendum`
 
 
 export const DecodedList = () => {
