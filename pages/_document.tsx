@@ -15,6 +15,7 @@ export default function Document() {
         <meta property="og:type" content="article" />
         <meta property="og:description" content="Decode/Encode simple & fast Base 64" />
         <meta property="og:image" content="/base64icon.png" />
+        <meta name="description" content="Discover a powerful tool that allows you to efficiently Encode and Decode data between Base 64 representations and raw text." />
         <link rel="icon" href="/base64icon.png" sizes="any" />
       </Head>
 
