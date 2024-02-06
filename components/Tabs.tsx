@@ -13,7 +13,7 @@ export const Tabs = ({...props}) => {
       <ul className="hidden text-sm font-medium text-center text-gray-500 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
         
         <li className="w-full" onClick={handleSetEncodeMode}>
-          <a className={`
+          <span className={`
               cursor-pointer 
               inline-block 
               w-full p-4 rounded-tl-lg
@@ -25,11 +25,11 @@ export const Tabs = ({...props}) => {
             `}
           >
             Base 64 Encode
-          </a>
+          </span>
         </li>
 
         <li className="w-full" onClick={handleSetDecodeMode}>
-          <a className={`
+          <span className={`
             cursor-pointer 
             inline-block 
             w-full p-4 rounded-tr-lg
@@ -42,7 +42,7 @@ export const Tabs = ({...props}) => {
             aria-current="page"
           >
             Base 64 Decode 
-          </a>
+          </span>
         </li>
         
       </ul>
