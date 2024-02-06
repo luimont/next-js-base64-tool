@@ -110,7 +110,12 @@ export const TextArea = ({ ...props}) => {
                 >
                   <IconPaste />
                 </button>
-                <button type="button" onClick={handleSwitchMode} className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                <button 
+                  type="button" 
+                  onClick={handleSwitchMode} 
+                  aria-label='switch'
+                  className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+                >
                   <IconSwitch />
                 </button>
                 <button 
